@@ -1,6 +1,7 @@
 import prisma from '@/lib/prisma'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import AddToCartButton from '@/components/product/AddToCartButton'
 
 export const revalidate = 60
 
@@ -61,12 +62,7 @@ export default async function ProductPage({ params }) {
             {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
           </p>
 
-          <button
-            disabled={product.stock === 0}
-            className="mt-8 w-full rounded-full bg-gray-900 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-gray-700 disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            Add to cart
-          </button>
+          <AddToCartButton product={product} />
         </div>
       </div>
     </div>
