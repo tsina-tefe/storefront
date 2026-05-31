@@ -1,0 +1,74 @@
+import prisma from '@/lib/prisma'
+import Image from 'next/image'
+import { notFound } from 'next/navigation'
+
+export const revalidate = 60
+
+export async function generateStaticParams() {
+  const products = await prisma.product.findMany({ select: { slug: true } })
+  return products.map((p) => ({ slug: p.slug }))
+}
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params
+  const product = await prisma.product.findUnique({ where: { slug } })
+  if (!product) return { title: 'Product not found' }
+  return {
+    title: `${product.name} — Storefront`,
+    description: product.description,
+  }
+}
+
+export default async function ProductPage({ params }) {
+  const { slug } = await params
+  const product = await prisma.product.findUnique({
+    where: { slug },
+    include: { category: true },
+  })
+
+  if (!product) notFound()
+
+  return (
+    <div className="mx-auto max-w-6xl px-4 py-10">
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+        {/* Image */}
+        <div className="relative aspect-square overflow-hidden rounded-2xl bg-gray-100">
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            priority
+          />
+        </div>
+
+        {/* Info */}
+        <div className="flex flex-col justify-center">
+          <p className="text-sm font-medium tracking-wide text-gray-400 uppercase">
+            {product.category.name}
+          </p>
+          <h1 className="mt-2 text-3xl font-bold text-gray-900">
+            {product.name}
+          </h1>
+          <p className="mt-4 text-3xl font-bold text-gray-900">
+            ${product.price.toFixed(2)}
+          </p>
+          <p className="mt-4 leading-relaxed text-gray-500">
+            {product.description}
+          </p>
+          <p className="mt-4 text-sm text-gray-400">
+            {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
+          </p>
+
+          <button
+            disabled={product.stock === 0}
+            className="mt-8 w-full rounded-full bg-gray-900 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-gray-700 disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            Add to cart
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
