@@ -46,14 +46,14 @@ export default function CartPage() {
                 <div className="flex flex-1 flex-col justify-between">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <p className="font-semibold text-gray-900">{item.name}</p>
+                      <p className="font-semibold text-gray-200">{item.name}</p>
                       <p className="mt-0.5 text-sm text-gray-400">
                         ${item.price.toFixed(2)} each
                       </p>
                     </div>
                     <button
                       onClick={() => removeItem(item.id)}
-                      className="text-gray-300 transition-colors hover:text-red-400"
+                      className="cursor-pointer text-gray-300 transition-colors hover:text-red-400"
                     >
                       <Trash2 size={18} />
                     </button>
@@ -64,7 +64,7 @@ export default function CartPage() {
                         onClick={() =>
                           updateQuantity(item.id, item.quantity - 1)
                         }
-                        className="text-gray-500 transition-colors hover:text-gray-900"
+                        className="cursor-pointer text-gray-500 transition-colors hover:text-gray-900"
                       >
                         −
                       </button>
@@ -75,7 +75,7 @@ export default function CartPage() {
                         onClick={() =>
                           updateQuantity(item.id, item.quantity + 1)
                         }
-                        className="text-gray-500 transition-colors hover:text-gray-900"
+                        className="cursor-pointer text-gray-500 transition-colors hover:text-gray-900"
                       >
                         +
                       </button>
@@ -91,7 +91,7 @@ export default function CartPage() {
 
           <button
             onClick={clearCart}
-            className="mt-4 text-sm text-gray-400 underline underline-offset-2 transition-colors hover:text-red-400"
+            className="mt-4 cursor-pointer text-sm text-gray-400 underline underline-offset-2 transition-colors hover:text-red-400"
           >
             Clear cart
           </button>

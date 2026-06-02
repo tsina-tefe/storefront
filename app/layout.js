@@ -1,6 +1,7 @@
 import { Geist } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/layout/Navbar'
+import Providers from '@/components/layout/Providers'
 
 const geist = Geist({ subsets: ['latin'] })
 
@@ -15,8 +16,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${geist.className} bg-gray-50 text-gray-900 antialiased`}
       >
-        <Navbar />
-        <main className="min-h-screen">{children}</main>
+        <Providers>
+          <Navbar />
+          <main className="min-h-screen">{children}</main>
+        </Providers>
       </body>
     </html>
   )

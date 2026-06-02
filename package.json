@@ -14,9 +14,11 @@
     "seed": "node --env-file=.env prisma/seed.js"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.11.2",
     "@prisma/adapter-neon": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "@stripe/stripe-js": "^9.7.0",
+    "bcryptjs": "^3.0.3",
     "dotenv": "^17.4.2",
     "lucide-react": "^1.17.0",
     "next": "16.2.6",
