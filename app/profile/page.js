@@ -15,10 +15,10 @@ export default async function ProfilePage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10">
-      <h1 className="text-3xl font-bold text-gray-900">My account</h1>
+      <h1 className="text-3xl font-bold text-gray-400">My account</h1>
       <p className="mt-1 text-gray-400">{session.user.email}</p>
 
-      <h2 className="mt-10 text-xl font-semibold text-gray-900">
+      <h2 className="mt-10 text-xl font-semibold text-gray-400">
         Order history
       </h2>
 

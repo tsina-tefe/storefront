@@ -26,10 +26,9 @@ export default function CartPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
-      <h1 className="text-3xl font-bold text-gray-900">Your cart</h1>
+      <h1 className="text-3xl font-bold text-gray-400">Your cart</h1>
 
       <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-3">
-        {/* Items list */}
         <div className="lg:col-span-2">
           <ul className="divide-y divide-gray-100">
             {items.map((item) => (
@@ -80,7 +79,7 @@ export default function CartPage() {
                         +
                       </button>
                     </div>
-                    <p className="font-semibold text-gray-900">
+                    <p className="font-semibold text-gray-500">
                       ${(item.price * item.quantity).toFixed(2)}
                     </p>
                   </div>
@@ -97,7 +96,6 @@ export default function CartPage() {
           </button>
         </div>
 
-        {/* Order summary */}
         <div className="h-fit rounded-2xl border border-gray-200 bg-white p-6">
           <h2 className="text-lg font-semibold text-gray-900">Order summary</h2>
           <div className="mt-4 space-y-3 text-sm">
@@ -122,7 +120,7 @@ export default function CartPage() {
           </Link>
           <Link
             href="/products"
-            className="mt-3 block w-full rounded-full border border-gray-200 py-3.5 text-center text-sm font-medium text-gray-600 transition-colors hover:border-gray-400"
+            className="mt-3 block w-full cursor-pointer rounded-full border border-gray-200 py-3.5 text-center text-sm font-medium text-gray-600 transition-colors hover:border-gray-400"
           >
             Continue shopping
           </Link>

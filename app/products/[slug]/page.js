@@ -49,10 +49,10 @@ export default async function ProductPage({ params }) {
           <p className="text-sm font-medium tracking-wide text-gray-400 uppercase">
             {product.category.name}
           </p>
-          <h1 className="mt-2 text-3xl font-bold text-gray-900">
+          <h1 className="mt-2 text-3xl font-bold text-gray-500">
             {product.name}
           </h1>
-          <p className="mt-4 text-3xl font-bold text-gray-900">
+          <p className="mt-4 text-3xl font-bold text-gray-400">
             ${product.price.toFixed(2)}
           </p>
           <p className="mt-4 leading-relaxed text-gray-500">

@@ -18,7 +18,7 @@ export default function AddToCartButton({ product }) {
     <button
       onClick={handleAdd}
       disabled={product.stock === 0}
-      className={`mt-8 flex w-full items-center justify-center gap-2 rounded-full py-3.5 text-sm font-semibold transition-all disabled:cursor-not-allowed disabled:opacity-40 ${
+      className={`mt-8 flex w-full cursor-pointer items-center justify-center gap-2 rounded-full py-3.5 text-sm font-semibold transition-all disabled:cursor-not-allowed disabled:opacity-40 ${
         added
           ? 'bg-green-600 text-white'
           : 'bg-gray-900 text-white hover:bg-gray-700'
