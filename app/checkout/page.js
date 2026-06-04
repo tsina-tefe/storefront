@@ -83,7 +83,6 @@ export default function CheckoutPage() {
           </Link>
         </div>
 
-        {/* Summary + pay button */}
         <div className="h-fit space-y-4 rounded-2xl border border-gray-200 bg-white p-6">
           <h2 className="text-lg font-semibold text-gray-900">Summary</h2>
 

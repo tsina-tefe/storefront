@@ -28,7 +28,6 @@ export default function Navbar() {
     update()
   }, [pathname])
 
-  // Close mobile nav on route change
   useEffect(() => {
     setMobileNavOpen(false)
   }, [pathname])
@@ -95,7 +94,6 @@ export default function Navbar() {
             Storefront
           </Link>
 
-          {/* Desktop nav */}
           <nav className="hidden items-center gap-6 text-sm font-medium text-gray-600 md:flex">
             {navLinks.map((link) => (
               <Link
@@ -111,7 +109,6 @@ export default function Navbar() {
           </nav>
 
           <div className="flex items-center gap-2">
-            {/* Cart button */}
             <button
               onClick={() => setDrawerOpen(true)}
               className="relative cursor-pointer p-2 text-gray-500 transition-colors hover:text-gray-900"
@@ -124,10 +121,8 @@ export default function Navbar() {
               )}
             </button>
 
-            {/* Desktop user section */}
             <div className="hidden md:block">{renderUserSection()}</div>
 
-            {/* Mobile hamburger */}
             <button
               onClick={() => setMobileNavOpen((v) => !v)}
               className="cursor-pointer p-2 text-gray-500 transition-colors hover:text-gray-900 md:hidden"
@@ -137,7 +132,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile nav panel */}
         {mobileNavOpen && (
           <div className="border-t border-gray-200 bg-white px-4 py-4 md:hidden">
             <nav className="flex flex-col gap-1">

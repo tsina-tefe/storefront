@@ -11,7 +11,6 @@ export default async function HomePage() {
 
   return (
     <div>
-      {/* Hero */}
       <section className="border-b border-gray-200 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-20 text-center">
           <h1 className="text-5xl font-bold tracking-tight text-gray-900">
@@ -29,9 +28,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Featured Products */}
       <section className="mx-auto max-w-6xl px-4 py-16">
-        <h2 className="mb-8 text-2xl font-bold text-gray-900">
+        <h2 className="mb-8 text-2xl font-bold text-gray-400">
           Featured products
         </h2>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">

@@ -7,13 +7,11 @@ const adapter = new PrismaNeon({ connectionString: process.env.DATABASE_URL })
 const prisma = new PrismaClient({ adapter })
 
 async function main() {
-  // Clean existing data
   await prisma.orderItem.deleteMany()
   await prisma.order.deleteMany()
   await prisma.product.deleteMany()
   await prisma.category.deleteMany()
 
-  // Create categories
   const electronics = await prisma.category.create({
     data: { name: 'Electronics', slug: 'electronics' },
   })
@@ -27,10 +25,8 @@ async function main() {
     data: { name: 'Home & Kitchen', slug: 'home-kitchen' },
   })
 
-  // Create products
   await prisma.product.createMany({
     data: [
-      // Electronics
       {
         name: 'Wireless Noise-Cancelling Headphones',
         slug: 'wireless-noise-cancelling-headphones',
@@ -76,7 +72,6 @@ async function main() {
         categoryId: electronics.id,
       },
 
-      // Clothing
       {
         name: 'Classic Crewneck Sweatshirt',
         slug: 'classic-crewneck-sweatshirt',
@@ -111,7 +106,6 @@ async function main() {
         categoryId: clothing.id,
       },
 
-      // Books
       {
         name: 'The Pragmatic Programmer',
         slug: 'the-pragmatic-programmer',
@@ -146,7 +140,6 @@ async function main() {
         categoryId: books.id,
       },
 
-      // Home & Kitchen
       {
         name: 'Pour Over Coffee Maker',
         slug: 'pour-over-coffee-maker',

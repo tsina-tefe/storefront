@@ -55,7 +55,6 @@ export async function POST(req) {
 
     console.log(`✅ Order created for session ${session.id}`)
 
-    // Send confirmation email
     const user = await prisma.user.findUnique({ where: { id: userId } })
     if (user?.email) {
       await resend.emails.send({

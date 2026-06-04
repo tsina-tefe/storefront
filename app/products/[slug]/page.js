@@ -32,7 +32,6 @@ export default async function ProductPage({ params }) {
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
       <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
-        {/* Image */}
         <div className="relative aspect-square overflow-hidden rounded-2xl bg-gray-100">
           <Image
             src={product.image}
@@ -44,7 +43,6 @@ export default async function ProductPage({ params }) {
           />
         </div>
 
-        {/* Info */}
         <div className="flex flex-col justify-center">
           <p className="text-sm font-medium tracking-wide text-gray-400 uppercase">
             {product.category.name}

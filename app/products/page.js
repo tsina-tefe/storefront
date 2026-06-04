@@ -31,9 +31,7 @@ export default async function ProductsPage({ searchParams }) {
     <div className="mx-auto max-w-6xl px-4 py-10">
       <h1 className="text-3xl font-bold text-gray-400">All Products</h1>
 
-      {/* Filters bar */}
       <div className="mt-6 flex flex-wrap items-center gap-3">
-        {/* Category filters */}
         <div className="flex flex-wrap gap-2">
           <FilterLink href="/products" label="All" active={!category} />
           {categories.map((cat) => (
@@ -46,7 +44,6 @@ export default async function ProductsPage({ searchParams }) {
           ))}
         </div>
 
-        {/* Sort */}
         <div className="ml-auto flex gap-2">
           <SortLink
             href="/products"
@@ -67,10 +64,8 @@ export default async function ProductsPage({ searchParams }) {
         </div>
       </div>
 
-      {/* Search */}
       <SearchBar defaultValue={search} />
 
-      {/* Results */}
       {products.length === 0 ? (
         <p className="mt-16 text-center text-gray-400">No products found.</p>
       ) : (
