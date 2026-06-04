@@ -2,12 +2,36 @@ import { Geist } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Providers from '@/components/layout/Providers'
+import Footer from '@/components/layout/Footer'
 
 const geist = Geist({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Storefront',
-  description: 'A Next.js e-commerce store',
+  title: {
+    default: 'Storefront',
+    template: '%s — Storefront',
+  },
+  description:
+    'Quality products across electronics, clothing, books, and more.',
+  openGraph: {
+    title: 'Storefront',
+    description:
+      'Quality products across electronics, clothing, books, and more.',
+    url: process.env.NEXTAUTH_URL,
+    siteName: 'Storefront',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Storefront',
+    description:
+      'Quality products across electronics, clothing, books, and more.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export default function RootLayout({ children }) {
@@ -19,6 +43,7 @@ export default function RootLayout({ children }) {
         <Providers>
           <Navbar />
           <main className="min-h-screen">{children}</main>
+          <Footer />
         </Providers>
       </body>
     </html>
