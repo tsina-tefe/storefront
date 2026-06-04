@@ -3,6 +3,7 @@
 import prisma from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
 import { signIn } from '@/lib/auth'
+import { isRedirectError } from 'next/dist/client/components/redirect-error'
 
 export async function registerUser({ name, email, password }) {
   const existing = await prisma.user.findUnique({ where: { email } })
@@ -31,6 +32,8 @@ export async function loginUser({ email, password }) {
       redirectTo: '/',
     })
   } catch (error) {
+    if (isRedirectError(error)) throw error
+
     return { error: 'Invalid email or password.' }
   }
 }

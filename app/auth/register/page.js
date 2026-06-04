@@ -3,11 +3,14 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { registerUser } from '@/actions/auth'
+import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 export default function RegisterPage() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
+  const router = useRouter()
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -26,10 +29,21 @@ export default function RegisterPage() {
     }
 
     const result = await registerUser({ name, email, password })
+
     if (result?.error) {
       setError(result.error)
       setLoading(false)
+      return
     }
+
+    await signIn('credentials', {
+      email,
+      password,
+      redirect: false,
+    })
+
+    router.push('/')
+    router.refresh()
   }
 
   return (

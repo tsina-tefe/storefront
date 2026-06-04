@@ -4,12 +4,13 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { loginUser } from '@/actions/auth'
 import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  // New state to manage password visibility
   const [showPassword, setShowPassword] = useState(false)
+  const router = useRouter()
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -21,10 +22,21 @@ export default function LoginPage() {
     const password = form.get('password')
 
     const result = await loginUser({ email, password })
+
     if (result?.error) {
       setError(result.error)
       setLoading(false)
+      return
     }
+
+    await signIn('credentials', {
+      email,
+      password,
+      redirect: false,
+    })
+
+    router.push('/')
+    router.refresh()
   }
 
   return (
@@ -59,17 +71,14 @@ export default function LoginPage() {
             <label className="mb-1 block text-sm font-medium text-gray-700">
               Password
             </label>
-            {/* Added relative wrapper to position the toggle button */}
             <div className="relative flex items-center">
               <input
                 name="password"
-                // Type switches dynamically based on state
                 type={showPassword ? 'text' : 'password'}
                 required
                 placeholder="Your password"
                 className="w-full rounded-lg border border-gray-200 py-2.5 pr-12 pl-4 text-sm text-gray-700 focus:border-gray-400 focus:outline-none"
               />
-              {/* Visibility Toggle Button */}
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
@@ -77,7 +86,6 @@ export default function LoginPage() {
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
                 {showPassword ? (
-                  // "Hide" Eye Icon
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -93,7 +101,6 @@ export default function LoginPage() {
                     />
                   </svg>
                 ) : (
-                  // "Show" Eye Icon
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
