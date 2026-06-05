@@ -2,11 +2,12 @@ import { auth } from '@/lib/auth'
 import { NextResponse } from 'next/server'
 
 export default auth((req) => {
+  const { pathname } = req.nextUrl
+
   const isLoggedIn = !!req.auth
-  const isAuthPage = req.nextUrl.pathname.startsWith('/auth')
+  const isAuthPage = pathname.startsWith('/auth')
   const isProtected =
-    req.nextUrl.pathname.startsWith('/checkout') ||
-    req.nextUrl.pathname.startsWith('/profile')
+    pathname.startsWith('/checkout') || pathname.startsWith('/profile')
 
   if (isProtected && !isLoggedIn) {
     return NextResponse.redirect(new URL('/auth/login', req.url))
@@ -20,5 +21,11 @@ export default auth((req) => {
 })
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: [
+    '/checkout',
+    '/checkout/:path*',
+    '/profile',
+    '/profile/:path*',
+    '/auth/:path*',
+  ],
 }
